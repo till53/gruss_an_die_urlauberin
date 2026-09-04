@@ -479,7 +479,7 @@ button:focus-visible {
 .plant--one .leaf--one { transform-origin: left center; }
 .plant--one .leaf--two { transform-origin: right center; }
 .plant--two .leaf--one { transform-origin: right center; }
-.plant--two .leaf--two { transform-origin: left center; }
+.plant--two .leaf--two { transform-origin: right center; }
 .plant--three .leaf--one { transform-origin: right center; }
 .plant--three .leaf--two { transform-origin: left center; }
 
