@@ -121,7 +121,7 @@ resultView.addEventListener("click", (event) => {
     window.setTimeout(() => {
       flowersAreReady = true;
       flowerHint.hidden = false;
-    }, 5900);
+    }, 7200);
     return;
   }
 
@@ -217,11 +217,11 @@ function makeComputerMove() {
   gameBoard.classList.remove("is-waiting");
 
   if (hasWon("O")) {
-    finishGame("Okay … ich habe gewonnen.");
+    finishGame("Okay, der Punkt geht an mich.");
   } else if (gameState.every(Boolean)) {
-    finishGame("Unentschieden. Ihr seid wohl beide gleich schlau.");
+    finishGame("Unentschieden. Das klären wir nochmal.");
   } else {
-    gameStatus.textContent = "Du bist dran.";
+    gameStatus.textContent = "Dein Zug.";
   }
 }
 
@@ -242,13 +242,13 @@ gameBoard.addEventListener("click", (event) => {
   cell.setAttribute("aria-label", `Feld ${index + 1}, X`);
 
   if (hasWon("X")) {
-    finishGame("Du hast gewonnen! Besser als ich. 🎉", true);
+    finishGame("Du hast gewonnen. Besser als ich. 🎉", true);
   } else if (gameState.every(Boolean)) {
-    finishGame("Unentschieden. Ihr seid wohl beide gleich schlau.");
+    finishGame("Unentschieden. Das klären wir nochmal.");
   } else {
     computerIsThinking = true;
     gameBoard.classList.add("is-waiting");
-    gameStatus.textContent = "Der Computer denkt sehr angestrengt …";
+    gameStatus.textContent = "Ich überlege …";
     window.setTimeout(makeComputerMove, 500);
   }
 });
@@ -258,8 +258,8 @@ gameReset.addEventListener("click", () => {
   gameState = Array(9).fill("");
   gameIsOver = false;
   computerIsThinking = false;
-  gameStatus.textContent = "Du bist dran.";
-  gameIntro.textContent = "Zweiter Versuch: Jetzt bin ich zu 50 % clever und zu 50 % komplett planlos.";
+  gameStatus.textContent = "Dein Zug.";
+  gameIntro.textContent = "Okay, noch eine Runde. Du fängst wieder an.";
   gameActions.hidden = true;
   gameContinue.hidden = true;
   gameBoard.classList.remove("is-waiting");

@@ -522,9 +522,25 @@ button:focus-visible {
   animation: reveal-note 700ms ease 5s forwards;
 }
 
+.flower-gift {
+  position: absolute;
+  top: max(62px, calc(env(safe-area-inset-top) + 38px));
+  left: 50%;
+  width: min(90%, 360px);
+  margin: 0;
+  color: #aaa69f;
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateX(-50%);
+}
+
+.place--flowers.is-blooming .flower-gift {
+  animation: reveal-note 700ms ease 5.7s forwards;
+}
+
 .flower-hint {
   position: absolute;
-  top: max(88px, calc(env(safe-area-inset-top) + 64px));
+  top: max(104px, calc(env(safe-area-inset-top) + 80px));
   color: #8d8a84;
 }
 
@@ -574,7 +590,8 @@ button:focus-visible {
   .flower-scene.is-blooming .stem,
   .flower-scene.is-blooming .leaf,
   .flower-scene.is-blooming .blossom,
-  .place--flowers.is-blooming .flower-note {
+  .place--flowers.is-blooming .flower-note,
+  .place--flowers.is-blooming .flower-gift {
     animation-delay: 0ms;
     animation-duration: 1ms;
   }
