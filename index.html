@@ -10,16 +10,19 @@
   </head>
   <body>
     <main class="page">
-      <section class="login" id="loginView" aria-labelledby="welcomeTitle">
+      <section class="login" id="loginView" aria-label="Anmeldung">
         <div class="login__intro">
-          <p class="eyebrow">Schön, dass du da bist.</p>
-          <h1 id="welcomeTitle">Willkommen</h1>
-          <p class="welcome-text">Gib kurz etwas ein, dann kann es losgehen.</p>
+          <p class="typed-message" id="typedMessage" aria-label="Hallo Alina, mir war langweilig und ich wollte ein bisschen testen und üben, daher dieses Projekt. Mit KI hättest du das auch hinbekommen. Bitte klaue nicht meinen Job."></p>
         </div>
 
         <form class="login__form" id="loginForm">
-          <label for="loginInput">Deine Eingabe</label>
-          <input id="loginInput" name="login" type="text" autocomplete="off" enterkeyhint="go" placeholder="Hier eingeben">
+          <label for="username">Benutzername</label>
+          <input id="username" name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Benutzername" required>
+
+          <label for="password">Passwort</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" enterkeyhint="go" placeholder="Passwort" required>
+
+          <p class="form-error" id="loginError" role="alert" hidden>Benutzername oder Passwort ist nicht korrekt.</p>
           <button type="submit">Weiter</button>
         </form>
       </section>

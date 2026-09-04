@@ -33,14 +33,6 @@ button, input { font: inherit; }
 .login { width: min(100%, 400px); }
 .login__intro { margin-bottom: 40px; }
 
-.eyebrow {
-  margin: 0 0 10px;
-  color: #746e65;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-
 h1, h2, p { margin-top: 0; }
 
 h1 {
@@ -50,12 +42,28 @@ h1 {
   letter-spacing: -0.045em;
 }
 
-.welcome-text {
-  max-width: 30ch;
+.typed-message {
+  min-height: 9.2em;
   margin-bottom: 0;
-  color: #625d55;
-  font-size: 1.05rem;
-  line-height: 1.55;
+  color: #24211d;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.typed-message::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  background: currentColor;
+  vertical-align: -0.12em;
+  animation: blink 800ms steps(1) infinite;
+}
+
+.typed-message.is-complete::after {
+  display: none;
 }
 
 .login__form {
@@ -64,6 +72,7 @@ h1 {
 }
 
 label {
+  margin-top: 4px;
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -89,6 +98,13 @@ input::placeholder { color: #918a80; }
 input:focus {
   border-color: #3d3933;
   box-shadow: 0 0 0 3px rgba(61, 57, 51, 0.12);
+}
+
+.form-error {
+  margin: 4px 0 0;
+  color: #a2382c;
+  font-size: 0.9rem;
+  line-height: 1.4;
 }
 
 button {
@@ -127,4 +143,10 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   input, button { transition: none; }
+
+  .typed-message::after { animation: none; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
