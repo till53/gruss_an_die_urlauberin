@@ -476,7 +476,7 @@ button:focus-visible {
   transform-origin: bottom center;
 }
 
-.plant--one .leaf--one { transform-origin: right bottom; }
+.plant--one .leaf--one { transform-origin: right center; }
 .plant--one .leaf--two { transform-origin: left center; }
 .plant--two .leaf--one { transform-origin: left center; }
 .plant--two .leaf--two { transform-origin: right center; }
@@ -533,20 +533,20 @@ button:focus-visible {
 .flower-scene.is-blooming .plant--two .stem { animation-delay: 400ms; }
 .flower-scene.is-blooming .plant--three .stem { animation-delay: 850ms; }
 .flower-scene.is-blooming .plant--one .leaf--one { animation-delay: 1.4s; }
-.flower-scene.is-blooming .plant--one .leaf--two { animation-delay: 2.1s; }
+.flower-scene.is-blooming .plant--one .leaf--two { animation-delay: 2.5s; }
 .flower-scene.is-blooming .plant--two .leaf--one { animation-delay: 1.8s; }
 .flower-scene.is-blooming .plant--two .leaf--two { animation-delay: 2.6s; }
 .flower-scene.is-blooming .plant--three .leaf--one { animation-delay: 2.2s; }
-.flower-scene.is-blooming .plant--three .leaf--two { animation-delay: 2.9s; }
+.flower-scene.is-blooming .plant--three .leaf--two { animation-delay: 3.4s; }
 .flower-scene.is-blooming .plant--one .vein--one { animation-delay: 1.8s; }
-.flower-scene.is-blooming .plant--one .vein--two { animation-delay: 2.5s; }
+.flower-scene.is-blooming .plant--one .vein--two { animation-delay: 2.9s; }
 .flower-scene.is-blooming .plant--two .vein--one { animation-delay: 2.2s; }
 .flower-scene.is-blooming .plant--two .vein--two { animation-delay: 3s; }
 .flower-scene.is-blooming .plant--three .vein--one { animation-delay: 2.6s; }
-.flower-scene.is-blooming .plant--three .vein--two { animation-delay: 3.3s; }
+.flower-scene.is-blooming .plant--three .vein--two { animation-delay: 3.8s; }
 .flower-scene.is-blooming .blossom--one { animation-delay: 3.2s; }
 .flower-scene.is-blooming .blossom--two { animation-delay: 3.7s; }
-.flower-scene.is-blooming .blossom--three { animation-delay: 4.1s; }
+.flower-scene.is-blooming .blossom--three { animation-delay: 4.3s; }
 
 .flower-message {
   position: absolute;
