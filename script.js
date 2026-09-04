@@ -16,6 +16,7 @@ const reelMessage = document.querySelector("#reelMessage");
 const reelHint = document.querySelector("#reelHint");
 const flowerScene = document.querySelector("#flowerScene");
 const flowerPage = document.querySelector(".place--flowers");
+const flowerHint = document.querySelector("#flowerHint");
 
 const message =
   "Hallo Alina,\nmir war langweilig und ich wollte ein bisschen testen/üben, daher dieses Projekt. Mit KI hättest du das auch hinbekommen (bitte klaue nicht meinen Job).";
@@ -68,6 +69,7 @@ loginForm.addEventListener("input", () => {
 });
 
 let journeyStep = 0;
+let flowersAreReady = false;
 
 resultView.addEventListener("click", (event) => {
   if (event.target.closest("a")) {
@@ -102,6 +104,17 @@ resultView.addEventListener("click", (event) => {
       flowerScene.classList.add("is-blooming");
       flowerPage.classList.add("is-blooming");
     }, 700);
+    window.setTimeout(() => {
+      flowersAreReady = true;
+      flowerHint.hidden = false;
+    }, 5900);
+    return;
+  }
+
+  if (journeyStep === 5 && flowersAreReady) {
+    journeyTrack.classList.remove("is-at-flowers");
+    journeyTrack.classList.add("is-at-farewell");
+    journeyStep = 6;
   }
 });
 

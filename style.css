@@ -146,33 +146,37 @@ button:focus-visible {
 
 .journey__track {
   display: flex;
-  width: 600%;
+  width: 700%;
   transition: transform 900ms cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .journey__track.is-in-hokkaido {
-  transform: translateX(-16.6667%);
+  transform: translateX(-14.2857%);
 }
 
 .journey__track.is-at-pumpkin-story {
-  transform: translateX(-33.3333%);
+  transform: translateX(-28.5714%);
 }
 
 .journey__track.is-at-game {
-  transform: translateX(-50%);
+  transform: translateX(-42.8571%);
 }
 
 .journey__track.is-at-reel {
-  transform: translateX(-66.6667%);
+  transform: translateX(-57.1429%);
 }
 
 .journey__track.is-at-flowers {
-  transform: translateX(-83.3333%);
+  transform: translateX(-71.4286%);
+}
+
+.journey__track.is-at-farewell {
+  transform: translateX(-85.7143%);
 }
 
 .place {
   display: flex;
-  flex: 0 0 16.6667%;
+  flex: 0 0 14.2857%;
   min-height: calc(100vh - 64px);
   min-height: calc(100dvh - 64px);
   flex-direction: column;
@@ -374,7 +378,8 @@ button:focus-visible {
 }
 
 .place--reel,
-.place--flowers {
+.place--flowers,
+.place--farewell {
   color: #f6f2e9;
 }
 
@@ -486,19 +491,50 @@ button:focus-visible {
 
 .flower-note {
   position: absolute;
-  bottom: max(18px, env(safe-area-inset-bottom));
+  top: max(24px, env(safe-area-inset-top));
   left: 50%;
-  width: max-content;
-  max-width: 90%;
+  width: min(90%, 360px);
   margin: 0;
-  color: #aaa69f;
-  font-size: 0.78rem;
+  color: #f6f2e9;
+  font-size: clamp(1.05rem, 4.5vw, 1.35rem);
+  font-weight: 750;
+  line-height: 1.35;
   opacity: 0;
   transform: translateX(-50%);
 }
 
 .place--flowers.is-blooming .flower-note {
   animation: reveal-note 700ms ease 5s forwards;
+}
+
+.flower-hint {
+  position: absolute;
+  top: max(88px, calc(env(safe-area-inset-top) + 64px));
+  color: #8d8a84;
+}
+
+.place--farewell h2 {
+  max-width: 10ch;
+  margin-bottom: 18px;
+  font-size: clamp(2.8rem, 12vw, 5rem);
+}
+
+.mountain {
+  margin-bottom: 24px;
+  font-size: clamp(4rem, 18vw, 7rem);
+}
+
+.backend-line {
+  margin-bottom: 34px;
+  color: #aaa69f;
+  font-size: 1.15rem;
+}
+
+.farewell-text {
+  max-width: 34ch;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+  line-height: 1.65;
 }
 
 .map-credit {
