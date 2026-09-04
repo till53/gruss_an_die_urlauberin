@@ -328,6 +328,13 @@ button:focus-visible {
   line-height: 1.5;
 }
 
+.game-rule {
+  margin: -12px 0 20px;
+  color: #918a80;
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
 .game-board {
   display: grid;
   width: min(70vw, 280px);
@@ -470,8 +477,8 @@ button:focus-visible {
 }
 
 .plant--one .leaf--one { transform-origin: right bottom; }
-.plant--one .leaf--two { transform-origin: left top; }
-.plant--two .leaf--one { transform-origin: left top; }
+.plant--one .leaf--two { transform-origin: left center; }
+.plant--two .leaf--one { transform-origin: left center; }
 .plant--two .leaf--two { transform-origin: right center; }
 .plant--three .leaf--one { transform-origin: right center; }
 .plant--three .leaf--two { transform-origin: left center; }
