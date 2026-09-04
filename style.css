@@ -480,8 +480,16 @@ button:focus-visible {
 .plant--one .leaf--two { transform-origin: left center; }
 .plant--two .leaf--one { transform-origin: left center; }
 .plant--two .leaf--two { transform-origin: right center; }
-.plant--three .leaf--one { transform-origin: right center; }
+.plant--three .leaf--one { transform-origin: left center; }
 .plant--three .leaf--two { transform-origin: left center; }
+
+.leaf-vein {
+  fill: none;
+  stroke: rgba(214, 233, 205, 0.48);
+  stroke-linecap: round;
+  stroke-width: 1.4;
+  opacity: 0;
+}
 
 .blossom {
   fill: #f1a7b5;
@@ -502,12 +510,20 @@ button:focus-visible {
   fill: #e8b943;
 }
 
+.flower-highlight {
+  fill: rgba(255, 255, 255, 0.62);
+}
+
 .flower-scene.is-blooming .stem {
   animation: grow-stem 3.4s cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }
 
 .flower-scene.is-blooming .leaf {
   animation: grow-leaf 700ms cubic-bezier(0.2, 0.8, 0.2, 1.2) forwards;
+}
+
+.flower-scene.is-blooming .leaf-vein {
+  animation: show-vein 400ms ease-out forwards;
 }
 
 .flower-scene.is-blooming .blossom {
@@ -522,6 +538,12 @@ button:focus-visible {
 .flower-scene.is-blooming .plant--two .leaf--two { animation-delay: 2.6s; }
 .flower-scene.is-blooming .plant--three .leaf--one { animation-delay: 2.2s; }
 .flower-scene.is-blooming .plant--three .leaf--two { animation-delay: 2.9s; }
+.flower-scene.is-blooming .plant--one .vein--one { animation-delay: 1.8s; }
+.flower-scene.is-blooming .plant--one .vein--two { animation-delay: 2.5s; }
+.flower-scene.is-blooming .plant--two .vein--one { animation-delay: 2.2s; }
+.flower-scene.is-blooming .plant--two .vein--two { animation-delay: 3s; }
+.flower-scene.is-blooming .plant--three .vein--one { animation-delay: 2.6s; }
+.flower-scene.is-blooming .plant--three .vein--two { animation-delay: 3.3s; }
 .flower-scene.is-blooming .blossom--one { animation-delay: 3.2s; }
 .flower-scene.is-blooming .blossom--two { animation-delay: 3.7s; }
 .flower-scene.is-blooming .blossom--three { animation-delay: 4.1s; }
@@ -640,6 +662,7 @@ button:focus-visible {
 
   .flower-scene.is-blooming .stem,
   .flower-scene.is-blooming .leaf,
+  .flower-scene.is-blooming .leaf-vein,
   .flower-scene.is-blooming .blossom {
     animation-delay: 0ms;
     animation-duration: 1ms;
@@ -660,6 +683,10 @@ button:focus-visible {
 
 @keyframes grow-leaf {
   to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes show-vein {
+  to { opacity: 1; }
 }
 
 @keyframes bloom {
