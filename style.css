@@ -36,7 +36,7 @@ button, input { font: inherit; }
 }
 
 .login { width: min(100%, 400px); }
-.login__intro { margin-bottom: 40px; }
+.login__intro { margin-bottom: 28px; }
 
 h1, h2, p { margin-top: 0; }
 
@@ -48,7 +48,7 @@ h1 {
 }
 
 .typed-message {
-  min-height: 9.2em;
+  min-height: 7em;
   margin-bottom: 0;
   color: #24211d;
   font-size: 1.25rem;
@@ -231,14 +231,14 @@ button:focus-visible {
 }
 
 .marker--muenster {
-  top: 29%;
+  top: 25%;
   left: 20.4%;
   transform: translateX(-50%);
 }
 
 .marker--hokkaido {
-  top: 30%;
-  left: 40.7%;
+  top: 28%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
@@ -535,19 +535,6 @@ button:focus-visible {
   margin-bottom: 0;
   font-size: 1.1rem;
   line-height: 1.65;
-}
-
-.map-credit {
-  position: absolute;
-  right: max(12px, env(safe-area-inset-right));
-  bottom: max(10px, env(safe-area-inset-bottom));
-  margin: 0;
-  color: #918a80;
-  font-size: 0.65rem;
-}
-
-.map-credit a {
-  color: inherit;
 }
 
 [hidden] { display: none !important; }
