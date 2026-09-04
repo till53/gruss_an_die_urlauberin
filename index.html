@@ -1,11 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Hallo Internet</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f5f1">
+    <title>Willkommen</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <section class="login" id="loginView" aria-labelledby="welcomeTitle">
+        <div class="login__intro">
+          <p class="eyebrow">Schön, dass du da bist.</p>
+          <h1 id="welcomeTitle">Willkommen</h1>
+          <p class="welcome-text">Gib kurz etwas ein, dann kann es losgehen.</p>
+        </div>
 
-<body>
-    <h1>Hallo Internet - VS Code</h1>
-</body>
+        <form class="login__form" id="loginForm">
+          <label for="loginInput">Deine Eingabe</label>
+          <input id="loginInput" name="login" type="text" autocomplete="off" enterkeyhint="go" placeholder="Hier eingeben">
+          <button type="submit">Weiter</button>
+        </form>
+      </section>
+
+      <section class="result" id="resultView" aria-live="polite" hidden>
+        <h2>Hello World</h2>
+      </section>
+    </main>
+  </body>
 </html>
