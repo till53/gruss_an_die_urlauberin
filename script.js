@@ -19,7 +19,7 @@ const flowerPage = document.querySelector(".place--flowers");
 const flowerHint = document.querySelector("#flowerHint");
 
 const message =
-  "Hallo Alina,\nmir war langweilig und ich wollte ein bisschen testen/üben, daher dieses Projekt. Mit KI hättest du das auch hinbekommen (bitte klaue nicht meinen Job).";
+  "Hallo Alina,\nich wollte etwas programmieren, daher dieses Projekt.\n\nMit KI hättest du das vermutlich auch hinbekommen (bitte klaue nicht meinen Job).";
 
 function showMessage() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
