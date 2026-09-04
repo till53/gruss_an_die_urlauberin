@@ -19,6 +19,7 @@ const reelHint = document.querySelector("#reelHint");
 const flowerScene = document.querySelector("#flowerScene");
 const flowerPage = document.querySelector(".place--flowers");
 const flowerHint = document.querySelector("#flowerHint");
+const flowerMessage = document.querySelector("#flowerMessage");
 
 const message =
   "Hallo Alina,\nmir war langweilig und ich wollte etwas testen/üben, daher dieses kleine Projekt.\n\nMit KI hättest du das vermutlich auch hinbekommen (bitte klaue nicht meinen Job).";
@@ -118,10 +119,10 @@ resultView.addEventListener("click", (event) => {
       flowerScene.classList.add("is-blooming");
       flowerPage.classList.add("is-blooming");
     }, 700);
-    window.setTimeout(() => {
-      flowersAreReady = true;
-      flowerHint.hidden = false;
-    }, 7200);
+    const flowerTextDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? 900
+      : 5900;
+    window.setTimeout(typeFlowerMessage, flowerTextDelay);
     return;
   }
 
@@ -272,6 +273,40 @@ gameReset.addEventListener("click", () => {
 
 const reelText =
   "Die nächste Seite ist für mich.\n\nOffenbar muss ich jetzt gegen den Typen aus deinem Reel gewinnen und beweisen, dass ich das auch kann.\n\nKein Druck. Nur mein gesamter beruflicher Stolz hängt davon ab.";
+
+const flowerText =
+  "Okay. Der Typ aus dem Reel kann einpacken.\nDie Blumen kannst du haben.";
+
+function typeFlowerMessage() {
+  flowerPage.classList.add("is-finished");
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    flowerMessage.textContent = flowerText;
+    flowerMessage.classList.add("is-complete");
+    flowersAreReady = true;
+    flowerHint.hidden = false;
+    return;
+  }
+
+  let characterIndex = 0;
+  flowerMessage.classList.add("is-typing");
+
+  const typeNextCharacter = () => {
+    flowerMessage.textContent += flowerText[characterIndex];
+    characterIndex += 1;
+
+    if (characterIndex < flowerText.length) {
+      window.setTimeout(typeNextCharacter, 40);
+    } else {
+      flowerMessage.classList.remove("is-typing");
+      flowerMessage.classList.add("is-complete");
+      flowersAreReady = true;
+      flowerHint.hidden = false;
+    }
+  };
+
+  typeNextCharacter();
+}
 
 function typeReelMessage() {
   let characterIndex = 0;
