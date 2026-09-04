@@ -5,6 +5,7 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginError = document.querySelector("#loginError");
 const typedMessage = document.querySelector("#typedMessage");
+const introHint = document.querySelector("#introHint");
 const journeyTrack = document.querySelector("#journeyTrack");
 const gameBoard = document.querySelector("#gameBoard");
 const gameStatus = document.querySelector("#gameStatus");
@@ -25,6 +26,7 @@ function showMessage() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     typedMessage.textContent = message;
     typedMessage.classList.add("is-complete");
+    introHint.hidden = false;
     return;
   }
 
@@ -38,13 +40,12 @@ function showMessage() {
       window.setTimeout(typeNextCharacter, 45);
     } else {
       typedMessage.classList.add("is-complete");
+      introHint.hidden = false;
     }
   };
 
   window.setTimeout(typeNextCharacter, 500);
 }
-
-showMessage();
 
 loginForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -56,6 +57,7 @@ loginForm.addEventListener("submit", (event) => {
   if (isValid) {
     loginView.hidden = true;
     resultView.hidden = false;
+    showMessage();
     return;
   }
 
@@ -77,29 +79,40 @@ resultView.addEventListener("click", (event) => {
   }
 
   if (journeyStep === 0) {
-    journeyTrack.classList.add("is-in-hokkaido");
+    if (!typedMessage.classList.contains("is-complete")) {
+      return;
+    }
+
+    journeyTrack.classList.add("is-in-germany");
     journeyStep = 1;
     return;
   }
 
   if (journeyStep === 1) {
-    journeyTrack.classList.remove("is-in-hokkaido");
-    journeyTrack.classList.add("is-at-pumpkin-story");
+    journeyTrack.classList.remove("is-in-germany");
+    journeyTrack.classList.add("is-in-hokkaido");
     journeyStep = 2;
     return;
   }
 
   if (journeyStep === 2) {
-    journeyTrack.classList.remove("is-at-pumpkin-story");
-    journeyTrack.classList.add("is-at-game");
+    journeyTrack.classList.remove("is-in-hokkaido");
+    journeyTrack.classList.add("is-at-pumpkin-story");
     journeyStep = 3;
     return;
   }
 
-  if (journeyStep === 4 && reelMessage.classList.contains("is-complete")) {
+  if (journeyStep === 3) {
+    journeyTrack.classList.remove("is-at-pumpkin-story");
+    journeyTrack.classList.add("is-at-game");
+    journeyStep = 4;
+    return;
+  }
+
+  if (journeyStep === 5 && reelMessage.classList.contains("is-complete")) {
     journeyTrack.classList.remove("is-at-reel");
     journeyTrack.classList.add("is-at-flowers");
-    journeyStep = 5;
+    journeyStep = 6;
     window.setTimeout(() => {
       flowerScene.classList.add("is-blooming");
       flowerPage.classList.add("is-blooming");
@@ -111,10 +124,10 @@ resultView.addEventListener("click", (event) => {
     return;
   }
 
-  if (journeyStep === 5 && flowersAreReady) {
+  if (journeyStep === 6 && flowersAreReady) {
     journeyTrack.classList.remove("is-at-flowers");
     journeyTrack.classList.add("is-at-farewell");
-    journeyStep = 6;
+    journeyStep = 7;
   }
 });
 
@@ -231,7 +244,7 @@ gameContinue.addEventListener("click", (event) => {
   document.body.classList.add("night-mode");
   journeyTrack.classList.remove("is-at-game");
   journeyTrack.classList.add("is-at-reel");
-  journeyStep = 4;
+  journeyStep = 5;
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     reelMessage.textContent = reelText;

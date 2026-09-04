@@ -36,7 +36,21 @@ button, input { font: inherit; }
 }
 
 .login { width: min(100%, 400px); }
-.login__intro { margin-bottom: 16px; }
+.login__intro { margin-bottom: 36px; }
+
+.login-kicker {
+  margin-bottom: 10px;
+  color: #746e65;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.login-note {
+  margin-bottom: 0;
+  color: #625d55;
+  font-size: 1.05rem;
+}
 
 h1, h2, p { margin-top: 0; }
 
@@ -48,7 +62,8 @@ h1 {
 }
 
 .typed-message {
-  min-height: 7em;
+  width: min(100%, 400px);
+  min-height: 8em;
   margin-bottom: 0;
   color: #24211d;
   font-size: 1.25rem;
@@ -146,37 +161,41 @@ button:focus-visible {
 
 .journey__track {
   display: flex;
-  width: 700%;
+  width: 800%;
   transition: transform 900ms cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+.journey__track.is-in-germany {
+  transform: translateX(-12.5%);
+}
+
 .journey__track.is-in-hokkaido {
-  transform: translateX(-14.2857%);
+  transform: translateX(-25%);
 }
 
 .journey__track.is-at-pumpkin-story {
-  transform: translateX(-28.5714%);
+  transform: translateX(-37.5%);
 }
 
 .journey__track.is-at-game {
-  transform: translateX(-42.8571%);
+  transform: translateX(-50%);
 }
 
 .journey__track.is-at-reel {
-  transform: translateX(-57.1429%);
+  transform: translateX(-62.5%);
 }
 
 .journey__track.is-at-flowers {
-  transform: translateX(-71.4286%);
+  transform: translateX(-75%);
 }
 
 .journey__track.is-at-farewell {
-  transform: translateX(-85.7143%);
+  transform: translateX(-87.5%);
 }
 
 .place {
   display: flex;
-  flex: 0 0 14.2857%;
+  flex: 0 0 12.5%;
   min-height: calc(100vh - 64px);
   min-height: calc(100dvh - 64px);
   flex-direction: column;

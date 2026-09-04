@@ -12,7 +12,9 @@
     <main class="page">
       <section class="login" id="loginView" aria-label="Anmeldung">
         <div class="login__intro">
-          <p class="typed-message" id="typedMessage" aria-label="Hallo Alina, mir war langweilig und ich wollte etwas testen und üben, daher dieses kleine Projekt. Mit KI hättest du das vermutlich auch hinbekommen. Bitte klaue nicht meinen Job."></p>
+          <p class="login-kicker">Für die Urlauberin.</p>
+          <h1>Ein kleines Projekt</h1>
+          <p class="login-note">Weil mir langweilig war.</p>
         </div>
 
         <form class="login__form" id="loginForm">
@@ -29,6 +31,11 @@
 
       <section class="journey" id="resultView" aria-live="polite" hidden>
         <div class="journey__track" id="journeyTrack">
+          <article class="place place--intro" aria-label="Persönliche Nachricht">
+            <p class="typed-message" id="typedMessage" aria-label="Hallo Alina, mir war langweilig und ich wollte etwas testen und üben, daher dieses kleine Projekt. Mit KI hättest du das vermutlich auch hinbekommen. Bitte klaue nicht meinen Job."></p>
+            <p class="continue-hint intro-hint" id="introHint" hidden>Tippe, um weiterzumachen <span>→</span></p>
+          </article>
+
           <article class="place place--germany" aria-label="Deutschland, Münster">
             <div class="place__heading">
               <p class="place__kicker">Deutschland</p>
