@@ -9,6 +9,7 @@ const introHint = document.querySelector("#introHint");
 const journeyTrack = document.querySelector("#journeyTrack");
 const gameBoard = document.querySelector("#gameBoard");
 const gameStatus = document.querySelector("#gameStatus");
+const gameIntro = document.querySelector("#gameIntro");
 const gameReset = document.querySelector("#gameReset");
 const gameActions = document.querySelector("#gameActions");
 const gameContinue = document.querySelector("#gameContinue");
@@ -140,9 +141,55 @@ const winningLines = [
 let gameState = Array(9).fill("");
 let gameIsOver = false;
 let computerIsThinking = false;
+let gameAttempt = 1;
 
 function hasWon(mark) {
   return winningLines.some((line) => line.every((index) => gameState[index] === mark));
+}
+
+function evaluateBoard(board) {
+  const lineBelongsTo = (mark) =>
+    winningLines.some((line) => line.every((index) => board[index] === mark));
+
+  if (lineBelongsTo("O")) return 10;
+  if (lineBelongsTo("X")) return -10;
+  return 0;
+}
+
+function minimax(board, isComputerTurn, depth = 0) {
+  const score = evaluateBoard(board);
+  if (score !== 0) return score > 0 ? score - depth : score + depth;
+  if (board.every(Boolean)) return 0;
+
+  const scores = [];
+  board.forEach((value, index) => {
+    if (value) return;
+    board[index] = isComputerTurn ? "O" : "X";
+    scores.push(minimax(board, !isComputerTurn, depth + 1));
+    board[index] = "";
+  });
+
+  return isComputerTurn ? Math.max(...scores) : Math.min(...scores);
+}
+
+function getSmartMove(emptyCells, preferDraw = false) {
+  const scoredMoves = emptyCells.map((index) => {
+    gameState[index] = "O";
+    const score = minimax(gameState, false);
+    gameState[index] = "";
+    return { index, score };
+  });
+
+  if (preferDraw) {
+    const drawingMoves = scoredMoves.filter((move) => move.score === 0);
+    if (drawingMoves.length) {
+      return drawingMoves[Math.floor(Math.random() * drawingMoves.length)].index;
+    }
+  }
+
+  const bestScore = Math.max(...scoredMoves.map((move) => move.score));
+  const bestMoves = scoredMoves.filter((move) => move.score === bestScore);
+  return bestMoves[Math.floor(Math.random() * bestMoves.length)].index;
 }
 
 function finishGame(message, playerHasWon = false) {
@@ -157,17 +204,20 @@ function makeComputerMove() {
   const emptyCells = gameState
     .map((value, index) => value === "" ? index : null)
     .filter((index) => index !== null);
-  const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+  const shouldPlaySmart = gameAttempt === 1 || Math.random() < 0.5;
+  const computerMove = shouldPlaySmart
+    ? getSmartMove(emptyCells, gameAttempt === 1)
+    : emptyCells[Math.floor(Math.random() * emptyCells.length)];
 
-  gameState[randomIndex] = "O";
-  gameCells[randomIndex].textContent = "O";
-  gameCells[randomIndex].setAttribute("aria-label", `Feld ${randomIndex + 1}, O`);
+  gameState[computerMove] = "O";
+  gameCells[computerMove].textContent = "O";
+  gameCells[computerMove].setAttribute("aria-label", `Feld ${computerMove + 1}, O`);
 
   computerIsThinking = false;
   gameBoard.classList.remove("is-waiting");
 
   if (hasWon("O")) {
-    finishGame("Okay … der Zufall hatte leider Glück.");
+    finishGame("Okay … ich habe gewonnen.");
   } else if (gameState.every(Boolean)) {
     finishGame("Unentschieden. Ihr seid wohl beide gleich schlau.");
   } else {
@@ -192,7 +242,7 @@ gameBoard.addEventListener("click", (event) => {
   cell.setAttribute("aria-label", `Feld ${index + 1}, X`);
 
   if (hasWon("X")) {
-    finishGame("Du hast gewonnen! 🎉", true);
+    finishGame("Du hast gewonnen! Besser als ich. 🎉", true);
   } else if (gameState.every(Boolean)) {
     finishGame("Unentschieden. Ihr seid wohl beide gleich schlau.");
   } else {
@@ -204,10 +254,12 @@ gameBoard.addEventListener("click", (event) => {
 });
 
 gameReset.addEventListener("click", () => {
+  gameAttempt += 1;
   gameState = Array(9).fill("");
   gameIsOver = false;
   computerIsThinking = false;
   gameStatus.textContent = "Du bist dran.";
+  gameIntro.textContent = "Zweiter Versuch: Jetzt bin ich zu 50 % clever und zu 50 % komplett planlos.";
   gameActions.hidden = true;
   gameContinue.hidden = true;
   gameBoard.classList.remove("is-waiting");
