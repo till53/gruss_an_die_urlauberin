@@ -57,6 +57,22 @@ loginForm.addEventListener("input", () => {
   loginError.hidden = true;
 });
 
-resultView.addEventListener("click", () => {
-  journeyTrack.classList.add("is-in-hokkaido");
+let journeyStep = 0;
+
+resultView.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    return;
+  }
+
+  if (journeyStep === 0) {
+    journeyTrack.classList.add("is-in-hokkaido");
+    journeyStep = 1;
+    return;
+  }
+
+  if (journeyStep === 1) {
+    journeyTrack.classList.remove("is-in-hokkaido");
+    journeyTrack.classList.add("is-at-pumpkin-story");
+    journeyStep = 2;
+  }
 });

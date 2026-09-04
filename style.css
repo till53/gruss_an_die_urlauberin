@@ -137,17 +137,21 @@ button:focus-visible {
 
 .journey__track {
   display: flex;
-  width: 200%;
+  width: 300%;
   transition: transform 900ms cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .journey__track.is-in-hokkaido {
-  transform: translateX(-50%);
+  transform: translateX(-33.3333%);
+}
+
+.journey__track.is-at-pumpkin-story {
+  transform: translateX(-66.6667%);
 }
 
 .place {
   display: flex;
-  flex: 0 0 50%;
+  flex: 0 0 33.3333%;
   min-height: calc(100vh - 64px);
   min-height: calc(100dvh - 64px);
   flex-direction: column;
@@ -183,18 +187,10 @@ button:focus-visible {
   margin: 6px auto 12px;
 }
 
-.map svg {
+.map img {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
-}
-
-.map path {
-  fill: #ddd7cd;
-  stroke: #24211d;
-  stroke-linejoin: round;
-  stroke-width: 3;
 }
 
 .map--germany {
@@ -211,12 +207,14 @@ button:focus-visible {
 
 .marker--muenster {
   top: 29%;
-  left: 23%;
+  left: 20.4%;
+  transform: translateX(-50%);
 }
 
 .marker--hokkaido {
-  top: 20%;
-  right: 27%;
+  top: 30%;
+  left: 40.7%;
+  transform: translateX(-50%);
 }
 
 .marker__arrow {
@@ -247,6 +245,45 @@ button:focus-visible {
   display: inline-block;
   margin-left: 4px;
   animation: nudge 1.6s ease-in-out infinite;
+}
+
+.pumpkin {
+  margin-bottom: 18px;
+  font-size: clamp(4rem, 20vw, 7rem);
+  filter: drop-shadow(0 8px 6px rgba(36, 33, 29, 0.14));
+}
+
+.place--pumpkin h2 {
+  max-width: 9ch;
+  margin-bottom: 18px;
+  font-size: clamp(2.25rem, 10vw, 4rem);
+}
+
+.pumpkin-fact {
+  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.pumpkin-story {
+  max-width: 38ch;
+  margin-bottom: 0;
+  color: #625d55;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.map-credit {
+  position: absolute;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(10px, env(safe-area-inset-bottom));
+  margin: 0;
+  color: #918a80;
+  font-size: 0.65rem;
+}
+
+.map-credit a {
+  color: inherit;
 }
 
 [hidden] { display: none !important; }
