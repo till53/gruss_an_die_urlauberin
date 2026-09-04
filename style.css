@@ -36,7 +36,7 @@ button, input { font: inherit; }
 }
 
 .login { width: min(100%, 400px); }
-.login__intro { margin-bottom: 28px; }
+.login__intro { margin-bottom: 16px; }
 
 h1, h2, p { margin-top: 0; }
 
