@@ -9,7 +9,13 @@ const journeyTrack = document.querySelector("#journeyTrack");
 const gameBoard = document.querySelector("#gameBoard");
 const gameStatus = document.querySelector("#gameStatus");
 const gameReset = document.querySelector("#gameReset");
+const gameActions = document.querySelector("#gameActions");
+const gameContinue = document.querySelector("#gameContinue");
 const gameCells = [...gameBoard.querySelectorAll("[data-cell]")];
+const reelMessage = document.querySelector("#reelMessage");
+const reelHint = document.querySelector("#reelHint");
+const flowerScene = document.querySelector("#flowerScene");
+const flowerPage = document.querySelector(".place--flowers");
 
 const message =
   "Hallo Alina,\nmir war langweilig und ich wollte ein bisschen testen/üben, daher dieses Projekt. Mit KI hättest du das auch hinbekommen (bitte klaue nicht meinen Job).";
@@ -85,6 +91,17 @@ resultView.addEventListener("click", (event) => {
     journeyTrack.classList.remove("is-at-pumpkin-story");
     journeyTrack.classList.add("is-at-game");
     journeyStep = 3;
+    return;
+  }
+
+  if (journeyStep === 4 && reelMessage.classList.contains("is-complete")) {
+    journeyTrack.classList.remove("is-at-reel");
+    journeyTrack.classList.add("is-at-flowers");
+    journeyStep = 5;
+    window.setTimeout(() => {
+      flowerScene.classList.add("is-blooming");
+      flowerPage.classList.add("is-blooming");
+    }, 700);
   }
 });
 
@@ -102,10 +119,11 @@ function hasWon(mark) {
   return winningLines.some((line) => line.every((index) => gameState[index] === mark));
 }
 
-function finishGame(message) {
+function finishGame(message, playerHasWon = false) {
   gameIsOver = true;
   gameStatus.textContent = message;
-  gameReset.hidden = false;
+  gameActions.hidden = false;
+  gameContinue.hidden = !playerHasWon;
   gameCells.forEach((cell) => { cell.disabled = true; });
 }
 
@@ -148,7 +166,7 @@ gameBoard.addEventListener("click", (event) => {
   cell.setAttribute("aria-label", `Feld ${index + 1}, X`);
 
   if (hasWon("X")) {
-    finishGame("Gewonnen. Die Einreise ist genehmigt. 🎉");
+    finishGame("Du hast gewonnen! 🎉", true);
   } else if (gameState.every(Boolean)) {
     finishGame("Unentschieden. Ihr seid wohl beide gleich schlau.");
   } else {
@@ -164,11 +182,49 @@ gameReset.addEventListener("click", () => {
   gameIsOver = false;
   computerIsThinking = false;
   gameStatus.textContent = "Du bist dran.";
-  gameReset.hidden = true;
+  gameActions.hidden = true;
+  gameContinue.hidden = true;
   gameBoard.classList.remove("is-waiting");
   gameCells.forEach((cell, index) => {
     cell.textContent = "";
     cell.disabled = false;
     cell.setAttribute("aria-label", `Feld ${index + 1}`);
   });
+});
+
+const reelText =
+  "Die nächste Seite ist für mich.\n\nOffenbar muss ich jetzt gegen den Typen aus deinem Reel gewinnen und beweisen, dass ich das auch kann.\n\nKein Druck. Nur mein gesamter beruflicher Stolz hängt davon ab.";
+
+function typeReelMessage() {
+  let characterIndex = 0;
+
+  const typeNextCharacter = () => {
+    reelMessage.textContent += reelText[characterIndex];
+    characterIndex += 1;
+
+    if (characterIndex < reelText.length) {
+      window.setTimeout(typeNextCharacter, 38);
+    } else {
+      reelMessage.classList.add("is-complete");
+      reelHint.hidden = false;
+    }
+  };
+
+  window.setTimeout(typeNextCharacter, 600);
+}
+
+gameContinue.addEventListener("click", (event) => {
+  event.stopPropagation();
+  document.body.classList.add("night-mode");
+  journeyTrack.classList.remove("is-at-game");
+  journeyTrack.classList.add("is-at-reel");
+  journeyStep = 4;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    reelMessage.textContent = reelText;
+    reelMessage.classList.add("is-complete");
+    reelHint.hidden = false;
+  } else {
+    typeReelMessage();
+  }
 });

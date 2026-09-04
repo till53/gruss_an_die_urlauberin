@@ -92,7 +92,47 @@
             </div>
 
             <p class="game-status" id="gameStatus" aria-live="polite">Du bist dran.</p>
-            <button class="game-reset" id="gameReset" type="button" hidden>Nochmal spielen</button>
+            <div class="game-actions" id="gameActions" hidden>
+              <button class="game-reset" id="gameReset" type="button">Nochmal spielen</button>
+              <button class="game-continue" id="gameContinue" type="button" hidden>Weiter</button>
+            </div>
+          </article>
+
+          <article class="place place--reel" aria-label="Die nächste Herausforderung">
+            <p class="reel-message" id="reelMessage"></p>
+            <p class="continue-hint reel-hint" id="reelHint" hidden>Tippe nochmal. Kein Druck. <span>→</span></p>
+          </article>
+
+          <article class="place place--flowers" aria-label="Wachsende Blumen">
+            <svg class="flower-scene" id="flowerScene" viewBox="0 0 390 700" aria-hidden="true">
+              <g class="plant plant--one">
+                <path class="stem" pathLength="1" d="M72 710 C58 610 118 568 84 480 S55 330 126 222 S148 116 137 70" />
+                <path class="leaf leaf--one" pathLength="1" d="M87 474 C40 442 38 398 78 416 C101 426 100 455 87 474Z" />
+                <path class="leaf leaf--two" pathLength="1" d="M104 333 C155 294 174 310 153 342 C136 365 118 352 104 333Z" />
+                <g transform="translate(137 67)">
+                  <g class="blossom blossom--one"><circle cx="0" cy="-19" r="17" /><circle cx="18" cy="-6" r="17" /><circle cx="11" cy="16" r="17" /><circle cx="-11" cy="16" r="17" /><circle cx="-18" cy="-6" r="17" /><circle class="flower-center" r="11" /></g>
+                </g>
+              </g>
+
+              <g class="plant plant--two">
+                <path class="stem" pathLength="1" d="M202 710 C220 624 169 566 210 492 S272 370 225 290 S202 170 244 112" />
+                <path class="leaf leaf--one" pathLength="1" d="M207 493 C252 455 279 468 257 501 C239 525 219 510 207 493Z" />
+                <path class="leaf leaf--two" pathLength="1" d="M230 303 C184 268 164 285 184 316 C201 339 219 321 230 303Z" />
+                <g transform="translate(244 108)">
+                  <g class="blossom blossom--two"><ellipse cx="0" cy="-22" rx="15" ry="21" /><ellipse cx="21" cy="-7" rx="15" ry="21" transform="rotate(72 21 -7)" /><ellipse cx="13" cy="18" rx="15" ry="21" transform="rotate(144 13 18)" /><ellipse cx="-13" cy="18" rx="15" ry="21" transform="rotate(216 -13 18)" /><ellipse cx="-21" cy="-7" rx="15" ry="21" transform="rotate(288 -21 -7)" /><circle class="flower-center" r="10" /></g>
+                </g>
+              </g>
+
+              <g class="plant plant--three">
+                <path class="stem" pathLength="1" d="M334 710 C300 630 355 570 319 504 S269 404 310 338 S350 244 323 187" />
+                <path class="leaf leaf--one" pathLength="1" d="M320 505 C279 474 255 490 278 519 C294 539 309 522 320 505Z" />
+                <path class="leaf leaf--two" pathLength="1" d="M304 347 C344 312 369 327 348 358 C333 379 315 363 304 347Z" />
+                <g transform="translate(323 183)">
+                  <g class="blossom blossom--three"><circle cx="0" cy="-17" r="15" /><circle cx="16" cy="-5" r="15" /><circle cx="10" cy="14" r="15" /><circle cx="-10" cy="14" r="15" /><circle cx="-16" cy="-5" r="15" /><circle class="flower-center" r="9" /></g>
+                </g>
+              </g>
+            </svg>
+            <p class="flower-note">Okay. Der Typ aus dem Reel kann einpacken.</p>
           </article>
         </div>
         <p class="map-credit">Kartendaten: <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener">geoBoundaries</a>, CC BY 4.0</p>
