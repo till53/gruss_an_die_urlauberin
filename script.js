@@ -20,6 +20,7 @@ const flowerScene = document.querySelector("#flowerScene");
 const flowerPage = document.querySelector(".place--flowers");
 const flowerHint = document.querySelector("#flowerHint");
 const flowerMessage = document.querySelector("#flowerMessage");
+const flowerGift = document.querySelector("#flowerGift");
 
 const message =
   "Hallo Alina,\nmir war langweilig und ich wollte etwas testen/üben, daher dieses kleine Projekt.\n\nMit KI hättest du das vermutlich auch hinbekommen (bitte klaue nicht meinen Job).";
@@ -121,7 +122,7 @@ resultView.addEventListener("click", (event) => {
     }, 700);
     const flowerTextDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches
       ? 900
-      : 5900;
+      : 7200;
     window.setTimeout(typeFlowerMessage, flowerTextDelay);
     return;
   }
@@ -274,8 +275,8 @@ gameReset.addEventListener("click", () => {
 const reelText =
   "Die nächste Seite ist für mich.\n\nOffenbar muss ich jetzt gegen den Typen aus deinem Reel gewinnen und beweisen, dass ich das auch kann.\n\nKein Druck. Nur mein gesamter beruflicher Stolz hängt davon ab.";
 
-const flowerText =
-  "Okay. Der Typ aus dem Reel kann einpacken.\nDie Blumen kannst du haben.";
+const flowerText = "Okay. Der Typ aus dem Reel kann einpacken.";
+const flowerGiftText = "Die Blumen kannst du haben.";
 
 function typeFlowerMessage() {
   flowerPage.classList.add("is-finished");
@@ -283,29 +284,41 @@ function typeFlowerMessage() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     flowerMessage.textContent = flowerText;
     flowerMessage.classList.add("is-complete");
+    flowerGift.textContent = flowerGiftText;
+    flowerGift.classList.add("is-complete");
     flowersAreReady = true;
     flowerHint.hidden = false;
     return;
   }
 
-  let characterIndex = 0;
-  flowerMessage.classList.add("is-typing");
+  const typeText = (element, text, onComplete) => {
+    let characterIndex = 0;
+    element.classList.add("is-typing");
 
-  const typeNextCharacter = () => {
-    flowerMessage.textContent += flowerText[characterIndex];
-    characterIndex += 1;
+    const typeNextCharacter = () => {
+      element.textContent += text[characterIndex];
+      characterIndex += 1;
 
-    if (characterIndex < flowerText.length) {
-      window.setTimeout(typeNextCharacter, 40);
-    } else {
-      flowerMessage.classList.remove("is-typing");
-      flowerMessage.classList.add("is-complete");
-      flowersAreReady = true;
-      flowerHint.hidden = false;
-    }
+      if (characterIndex < text.length) {
+        window.setTimeout(typeNextCharacter, 40);
+      } else {
+        element.classList.remove("is-typing");
+        element.classList.add("is-complete");
+        onComplete();
+      }
+    };
+
+    typeNextCharacter();
   };
 
-  typeNextCharacter();
+  typeText(flowerMessage, flowerText, () => {
+    window.setTimeout(() => {
+      typeText(flowerGift, flowerGiftText, () => {
+        flowersAreReady = true;
+        flowerHint.hidden = false;
+      });
+    }, 350);
+  });
 }
 
 function typeReelMessage() {
