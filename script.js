@@ -273,7 +273,7 @@ gameReset.addEventListener("click", () => {
 });
 
 const reelText =
-  "Die nächste Seite ist für mich.\n\nOffenbar muss ich jetzt gegen den Typen aus deinem Reel gewinnen und beweisen, dass ich das auch kann.\n\nKein Druck. Nur mein gesamter beruflicher Stolz hängt davon ab.";
+  "Die nächste Seite ist für mich.\n\nWas in dem Reel passiert ist, wollte ich natürlich auch mal ausprobieren.\n\nKein Druck. Nur mein gesamter beruflicher Stolz hängt davon ab.";
 
 const flowerText = "Okay. Der Typ aus dem Reel kann einpacken.";
 const flowerGiftText = "Die Blumen kannst du haben.";
