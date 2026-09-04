@@ -5,6 +5,7 @@ const usernameInput = document.querySelector("#username");
 const passwordInput = document.querySelector("#password");
 const loginError = document.querySelector("#loginError");
 const typedMessage = document.querySelector("#typedMessage");
+const journeyTrack = document.querySelector("#journeyTrack");
 
 const message =
   "Hallo Alina,\nmir war langweilig und ich wollte ein bisschen testen/üben, daher dieses Projekt. Mit KI hättest du das auch hinbekommen (bitte klaue nicht meinen Job).";
@@ -54,4 +55,8 @@ loginForm.addEventListener("submit", (event) => {
 
 loginForm.addEventListener("input", () => {
   loginError.hidden = true;
+});
+
+resultView.addEventListener("click", () => {
+  journeyTrack.classList.add("is-in-hokkaido");
 });
